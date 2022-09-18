@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "322850512747",
+    "firebase_url": "https://light-rush-default-rtdb.firebaseio.com",
+    "project_id": "light-rush",
+    "storage_bucket": "light-rush.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322850512747:android:4ca229dddcfe174f5eb62e",
+        "android_client_info": {
+          "package_name": "com.icypeak.lightrush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322850512747-4s92di78im37ebo74vs8gk499q2afalj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9t3Aw0EZGzNSdpuYCfNii9TKnWL0ACkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322850512747-4s92di78im37ebo74vs8gk499q2afalj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
