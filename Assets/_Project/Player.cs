@@ -54,6 +54,7 @@ namespace com.icypeak.player
                 {
                     this.tag = "Particle";
                     _sr.color = particleColor;
+
                 }
             }
         }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wave
   - Particle
+  - Wall
   layers:
   - Default
   - TransparentFX
