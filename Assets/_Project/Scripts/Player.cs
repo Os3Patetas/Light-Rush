@@ -1,3 +1,4 @@
+using com.icypeak.managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,8 +13,9 @@ namespace com.icypeak.player
         [SerializeField] Color particleColor;
         [SerializeField] Color waveColor;
 
-        bool _isPressingScreen;
+        bool _isPressingScreen = false;
         bool _alternateStateActionExecuted => _inputActions.Actions.Transform.WasPerformedThisFrame();
+        bool _isDead = false;
 
         void Awake()
         {
@@ -54,7 +56,6 @@ namespace com.icypeak.player
                 {
                     this.tag = "Particle";
                     _sr.color = particleColor;
-
                 }
             }
         }
@@ -71,13 +72,27 @@ namespace com.icypeak.player
 
         void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag(this.tag))
+            if (!collision.CompareTag(this.tag))
             {
-
-            }
-            else
-            {
+                _isDead = true;
                 Destroy(this.gameObject);
+            }
+        }
+
+        void OnTriggerStay2D(Collider2D collision)
+        {
+            if (!collision.CompareTag(this.tag))
+            {
+                _isDead = true;
+                Destroy(this.gameObject);
+            }    
+        }
+
+        void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.CompareTag(this.tag) && _isDead == false)
+            {
+                ScoreManager.Instance.Score++;
             }
         }
 
