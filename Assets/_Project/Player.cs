@@ -6,14 +6,26 @@ namespace com.icypeak.player
     public class Player : MonoBehaviour
     {
         Rigidbody2D _rb;
+        SpriteRenderer _sr;
         PlayerInputActions _inputActions;
 
+        [SerializeField] Color particleColor;
+        [SerializeField] Color waveColor;
+
         bool _isPressingScreen;
+        bool _transformActionPressed => _inputActions.Actions.Transform.WasPerformedThisFrame();
 
         void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _sr = GetComponent<SpriteRenderer>();
             _inputActions = new PlayerInputActions();
+        }
+
+        void Start()
+        {
+            this.tag = "Particle";
+            _sr.color = particleColor;
         }
 
         void OnEnable()
@@ -27,6 +39,23 @@ namespace com.icypeak.player
             _inputActions.Actions.Propulsion.started -= StartReadPropulsion;
             _inputActions.Actions.Propulsion.canceled -= StopReadPropulsion;
             _inputActions.Disable();
+        }
+
+        void Update()
+        {
+            if (_transformActionPressed)
+            {
+                if (this.CompareTag("Particle"))
+                {
+                    this.tag = "Wave";
+                    _sr.color = waveColor;
+                }
+                else
+                {
+                    this.tag = "Particle";
+                    _sr.color = particleColor;
+                }
+            }
         }
 
         void FixedUpdate()

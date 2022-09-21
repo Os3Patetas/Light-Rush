@@ -37,6 +37,15 @@ namespace com.icypeak.player
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Transform"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e7f03b4-9075-44e8-bc6e-d38e8d2ac463"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -59,6 +68,17 @@ namespace com.icypeak.player
                     ""processors"": """",
                     ""groups"": ""Editor"",
                     ""action"": ""Propulsion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1324b149-7a9e-4f2d-81e3-fb494ed3b233"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Editor"",
+                    ""action"": ""Transform"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -98,6 +118,7 @@ namespace com.icypeak.player
             // Actions
             m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
             m_Actions_Propulsion = m_Actions.FindAction("Propulsion", throwIfNotFound: true);
+            m_Actions_Transform = m_Actions.FindAction("Transform", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -158,11 +179,13 @@ namespace com.icypeak.player
         private readonly InputActionMap m_Actions;
         private IActionsActions m_ActionsActionsCallbackInterface;
         private readonly InputAction m_Actions_Propulsion;
+        private readonly InputAction m_Actions_Transform;
         public struct ActionsActions
         {
             private @PlayerInputActions m_Wrapper;
             public ActionsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Propulsion => m_Wrapper.m_Actions_Propulsion;
+            public InputAction @Transform => m_Wrapper.m_Actions_Transform;
             public InputActionMap Get() { return m_Wrapper.m_Actions; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -175,6 +198,9 @@ namespace com.icypeak.player
                     @Propulsion.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPropulsion;
                     @Propulsion.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPropulsion;
                     @Propulsion.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPropulsion;
+                    @Transform.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnTransform;
+                    @Transform.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnTransform;
+                    @Transform.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnTransform;
                 }
                 m_Wrapper.m_ActionsActionsCallbackInterface = instance;
                 if (instance != null)
@@ -182,6 +208,9 @@ namespace com.icypeak.player
                     @Propulsion.started += instance.OnPropulsion;
                     @Propulsion.performed += instance.OnPropulsion;
                     @Propulsion.canceled += instance.OnPropulsion;
+                    @Transform.started += instance.OnTransform;
+                    @Transform.performed += instance.OnTransform;
+                    @Transform.canceled += instance.OnTransform;
                 }
             }
         }
@@ -207,6 +236,7 @@ namespace com.icypeak.player
         public interface IActionsActions
         {
             void OnPropulsion(InputAction.CallbackContext context);
+            void OnTransform(InputAction.CallbackContext context);
         }
     }
 }
