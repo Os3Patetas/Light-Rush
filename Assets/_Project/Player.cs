@@ -13,7 +13,7 @@ namespace com.icypeak.player
         [SerializeField] Color waveColor;
 
         bool _isPressingScreen;
-        bool _transformActionPressed => _inputActions.Actions.Transform.WasPerformedThisFrame();
+        bool _alternateStateActionExecuted => _inputActions.Actions.Transform.WasPerformedThisFrame();
 
         void Awake()
         {
@@ -43,7 +43,7 @@ namespace com.icypeak.player
 
         void Update()
         {
-            if (_transformActionPressed)
+            if (_alternateStateActionExecuted)
             {
                 if (this.CompareTag("Particle"))
                 {
