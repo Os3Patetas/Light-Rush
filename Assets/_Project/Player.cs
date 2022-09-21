@@ -1,22 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace com.icypeak.player 
 {
     public class Player : MonoBehaviour
     {
         Rigidbody2D _rb;
+        PlayerInputActions _inputActions;
 
         bool _isPressingScreen;
+
         void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _inputActions = new PlayerInputActions();
         }
 
-        void Update()
+        void OnEnable()
         {
-            _isPressingScreen = Input.GetMouseButton(0);
+            _inputActions.Enable();
+            _inputActions.Actions.Propulsion.started += StartReadPropulsion;
+            _inputActions.Actions.Propulsion.canceled += StopReadPropulsion;
+        }
+        void OnDisable()
+        {
+            _inputActions.Actions.Propulsion.started -= StartReadPropulsion;
+            _inputActions.Actions.Propulsion.canceled -= StopReadPropulsion;
+            _inputActions.Disable();
         }
 
         void FixedUpdate()
@@ -40,6 +50,9 @@ namespace com.icypeak.player
                 Destroy(this.gameObject);
             }
         }
+
+        void StartReadPropulsion(InputAction.CallbackContext ctx) => _isPressingScreen = true;
+        void StopReadPropulsion(InputAction.CallbackContext ctx) => _isPressingScreen = false;
     }
 }
 
