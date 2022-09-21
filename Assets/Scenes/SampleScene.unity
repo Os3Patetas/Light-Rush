@@ -1313,7 +1313,7 @@ GameObject:
   - component: {fileID: 1447806764}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Particle
+  m_TagString: Wave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1407,7 +1407,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.05490196, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1444,6 +1444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed7b01d12b65d04e9c6931ad2114710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleHexColor: {r: 1, g: 0.056822136, b: 0, a: 1}
+  waveHexColor: {r: 1, g: 0.95709896, b: 0, a: 1}
 --- !u!1 &1504004242
 GameObject:
   m_ObjectHideFlags: 0
