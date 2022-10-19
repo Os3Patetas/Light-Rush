@@ -93,6 +93,7 @@ namespace com.icypeak.player
             if (collision.CompareTag(this.tag) && _isDead == false)
             {
                 ScoreManager.Instance.Score++;
+                DifficultyManager.Instance.IncreaseDifficulty();
             }
         }
 

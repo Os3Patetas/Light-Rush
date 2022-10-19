@@ -1,7 +1,5 @@
+using com.icypeak.managers;
 using com.icypeak.spawner;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace com.icypeak.obstacle
@@ -10,12 +8,8 @@ namespace com.icypeak.obstacle
     {
         Rigidbody2D _rb;
 
-        [SerializeField] float _baseSpeed;
-
-        void Awake()
-        {
+        void Awake() =>
             _rb = GetComponent<Rigidbody2D>();
-        }
 
         void Start()
         {
@@ -31,7 +25,7 @@ namespace com.icypeak.obstacle
             }
             parentSpawner.UpdateCurrentSeed();
 
-            _rb.velocity = Vector2.left * _baseSpeed;
+            _rb.velocity = DifficultyManager.Instance.ObstacleVelocity;
         }
 
         void Update()
@@ -39,6 +33,24 @@ namespace com.icypeak.obstacle
             if(transform.position.x <= -12)
             {
                 Destroy(this.gameObject);
+            }
+        }
+
+        void UpdateVelocity() =>
+            _rb.velocity = DifficultyManager.Instance.ObstacleVelocity;
+
+        void OnEnable()
+        {
+            if(DifficultyManager.Instance != null)
+            {
+                DifficultyManager.Instance.onDifficultyIncrease += UpdateVelocity;
+            }
+        }
+        void OnDisable()
+        {
+            if(DifficultyManager.Instance != null)
+            {
+                DifficultyManager.Instance.onDifficultyIncrease -= UpdateVelocity;
             }
         }
     }

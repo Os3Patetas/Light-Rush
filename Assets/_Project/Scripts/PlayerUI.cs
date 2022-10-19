@@ -8,15 +8,12 @@ namespace com.icypeak.ui
     {
         [SerializeField] TextMeshProUGUI _scoreTextComponent;
 
-        void Start()
-        {
+        void Start() =>
             _scoreTextComponent.text = "0";
-        }
 
-        void OnEnable()
-        {
+        void OnEnable() =>
             ScoreManager.Instance.OnScoreChange += UpdateScoreText;
-        }
+        
         void OnDisable()
         {
             if(ScoreManager.Instance != null)

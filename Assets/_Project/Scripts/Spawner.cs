@@ -1,3 +1,4 @@
+using com.icypeak.managers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,7 +8,6 @@ namespace com.icypeak.spawner
     public class Spawner : MonoBehaviour
     {
         [SerializeField] GameObject spawnableObstacle;
-        [SerializeField] float spawnCooldown;
         [SerializeField] bool isActive;
         float _timer;
 
@@ -18,7 +18,7 @@ namespace com.icypeak.spawner
 
         void Start()
         {
-            _timer = spawnCooldown;
+            _timer = DifficultyManager.Instance.SpawnCooldown;
             _originalSpawnOrder = new List<int>();
             for (int i = 0; i < SpawnableBlocks.Length; i++)
             {
@@ -34,7 +34,7 @@ namespace com.icypeak.spawner
             _timer -= Time.deltaTime;
             if (_timer <= 0f)
             {
-                _timer = spawnCooldown;
+                _timer = DifficultyManager.Instance.SpawnCooldown;
                 Instantiate(spawnableObstacle, this.transform.position, Quaternion.identity, this.transform);
             }
         }

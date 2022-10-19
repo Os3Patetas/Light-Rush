@@ -6,6 +6,7 @@ namespace com.icypeak.managers
     public class ScoreManager : MonoBehaviour
     {
         public static ScoreManager Instance;
+        bool repeatedObject = false;
 
         float _score;
         public float Score
@@ -23,7 +24,7 @@ namespace com.icypeak.managers
         {
             if (Instance != this && Instance != null)
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
             else
             {
@@ -31,14 +32,13 @@ namespace com.icypeak.managers
             }
         }
 
-        void Start()
-        {
-            _score = 0;
-        }
-
+        void Start() => _score = 0;
         void OnDestroy()
         {
-            Instance = null;
+            if(!repeatedObject)
+            {
+                Instance = null;
+            }
         }
     }
 }
