@@ -30,7 +30,7 @@ namespace com.icypeak.obstacle
 
         void Update()
         {
-            if(transform.position.x <= -12)
+            if (transform.position.x <= -12)
             {
                 Destroy(this.gameObject);
             }
@@ -41,14 +41,14 @@ namespace com.icypeak.obstacle
 
         void OnEnable()
         {
-            if(DifficultyManager.Instance != null)
+            if (DifficultyManager.Instance != null)
             {
                 DifficultyManager.Instance.onDifficultyIncrease += UpdateVelocity;
             }
         }
         void OnDisable()
         {
-            if(DifficultyManager.Instance != null)
+            if (DifficultyManager.Instance != null)
             {
                 DifficultyManager.Instance.onDifficultyIncrease -= UpdateVelocity;
             }

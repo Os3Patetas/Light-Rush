@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace com.icypeak
 {
-    [CreateAssetMenu(fileName ="Player Currency", menuName ="Database/Currency")]
+    [CreateAssetMenu(fileName = "Player Currency", menuName = "Database/Currency")]
     public class PlayerCurrency : ScriptableObject
     {
         public int Gold;

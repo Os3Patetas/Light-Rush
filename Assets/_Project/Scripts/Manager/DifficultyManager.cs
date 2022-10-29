@@ -21,7 +21,7 @@ namespace com.icypeak.managers
 
         void Awake()
         {
-            if(Instance != null && Instance != this)
+            if (Instance != null && Instance != this)
             {
                 repeatedObject = true;
                 Destroy(this.gameObject);
@@ -36,19 +36,11 @@ namespace com.icypeak.managers
         {
             SpawnCooldown = spawnBaseCooldown;
             obstacleSpeed = obstacleBaseSpeed;
-            print(obstacleBaseSpeed);
-            print(spawnBaseCooldown);
-        }
-
-        void Update()
-        {
-            print(ObstacleVelocity);
-            print(SpawnCooldown);    
         }
 
         void OnDestroy()
         {
-            if(!repeatedObject)
+            if (!repeatedObject)
             {
                 Instance = null;
             }
