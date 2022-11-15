@@ -7,11 +7,12 @@ namespace com.icypeak.player
     public class Player : MonoBehaviour
     {
         Rigidbody2D _rb;
+        Animator _anim;
         SpriteRenderer _sr;
         PlayerInputActions _inputActions;
 
-        [SerializeField] Color particleColor;
-        [SerializeField] Color waveColor;
+        //[SerializeField] Color particleColor;
+        //[SerializeField] Color waveColor;
 
         bool _isPressingScreen = false;
         bool _alternateStateActionExecuted => _inputActions.Actions.Transform.WasPerformedThisFrame();
@@ -20,14 +21,15 @@ namespace com.icypeak.player
         void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _anim = GetComponent<Animator>();
             _sr = GetComponent<SpriteRenderer>();
             _inputActions = new PlayerInputActions();
         }
 
         void Start()
         {
-            this.tag = "Particle";
-            _sr.color = particleColor;
+            this.tag = "Wave";
+            //_sr.color = particleColor;
             GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
 
@@ -50,13 +52,17 @@ namespace com.icypeak.player
             {
                 if (this.CompareTag("Particle"))
                 {
+                    _anim.SetBool("isWave" , true);
                     this.tag = "Wave";
-                    _sr.color = waveColor;
+                    _sr.flipX=true;
+                    //_sr.color = waveColor;
                 }
                 else
                 {
+                    _anim.SetBool("isWave" , false);
                     this.tag = "Particle";
-                    _sr.color = particleColor;
+                     _sr.flipX=false;
+                    //_sr.color = particleColor;
                 }
             }
         }

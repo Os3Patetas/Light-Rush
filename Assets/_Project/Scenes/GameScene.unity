@@ -986,7 +986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   percentageDifficultyProgression: 10
   obstacleBaseSpeed: 2
-  spawnBaseCooldown: 4
+  spawnBaseCooldown: 5
   SpawnCooldown: 0
 --- !u!4 &873808603
 Transform:
@@ -1552,8 +1552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed7b01d12b65d04e9c6931ad2114710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleColor: {r: 1, g: 0, b: 0, a: 1}
-  waveColor: {r: 1, g: 0.89104825, b: 0, a: 1}
 --- !u!95 &1447806765
 Animator:
   serializedVersion: 4
