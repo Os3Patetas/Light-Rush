@@ -7,10 +7,10 @@ namespace com.icypeak.scene
     {
         void Start()
         {
-            Screen.orientation = ScreenOrientation.Portrait;
-            Screen.autorotateToLandscapeRight = false;
-            Screen.autorotateToLandscapeLeft = false;
-            Screen.autorotateToPortrait = true;
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+            Screen.autorotateToLandscapeRight = true;
+            Screen.autorotateToLandscapeLeft = true;
+            Screen.autorotateToPortrait = false;
             Screen.autorotateToPortraitUpsideDown = false;
         }
         public void RedirectToGameScene()

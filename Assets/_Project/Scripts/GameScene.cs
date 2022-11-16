@@ -8,7 +8,7 @@ namespace com.icypeak
         [SerializeField] GameObject PauseUI;
         void Start()
         {
-            Screen.orientation = ScreenOrientation.LandscapeRight;
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
             Screen.autorotateToLandscapeRight = true;
             Screen.autorotateToLandscapeLeft = true;
             Screen.autorotateToPortrait = false;
