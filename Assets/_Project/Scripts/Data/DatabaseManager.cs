@@ -8,8 +8,9 @@ namespace com.Icypeak.Data
     public class DatabaseManager : MonoBehaviour
     {
         public static DatabaseManager Instance;
-        string userId;
+        public string userId;
         DatabaseReference dbRef;
+
 
         private void Awake()
         {
@@ -26,7 +27,8 @@ namespace com.Icypeak.Data
 
         void Start()
         {
-            userId = "xabliro";
+            userId = LocalDataManager.Instance.Info.LastUserID;
+            print(userId);
             dbRef = FirebaseDatabase.DefaultInstance.RootReference;
 
             StartCoroutine(StartDB());
@@ -35,7 +37,7 @@ namespace com.Icypeak.Data
         IEnumerator StartDB()
         {
             var currency = dbRef.Child("currency").Child(userId).GetValueAsync();
-            var gameData = dbRef.Child(GameInfo.GameName).Child(userId).GetValueAsync();
+            var gameData = dbRef.Child(LocalDataManager.Instance.Info.GameName).Child(userId).GetValueAsync();
             yield return new WaitUntil(predicate: () => currency.IsCompleted && gameData.IsCompleted);
             if (currency != null && gameData != null)
             {
@@ -49,6 +51,7 @@ namespace com.Icypeak.Data
                     var dbData = new CurrencyData();
                     dbData.Coins = int.Parse(snapshotCurrency.Child("Coins").Value.ToString());
                     dbData.Cash = int.Parse(snapshotCurrency.Child("Cash").Value.ToString());
+                    print(dbData.Coins);
                     LocalDataManager.Instance.UpdateLocalCurrencyData(dbData);
                 }
                 else
@@ -70,7 +73,7 @@ namespace com.Icypeak.Data
                 else
                 {
                     var infoToJson = JsonUtility.ToJson(LocalDataManager.Instance.Game);
-                    dbRef.Child(GameInfo.GameName).Child(userId).SetRawJsonValueAsync(infoToJson);
+                    dbRef.Child(LocalDataManager.Instance.Info.GameName).Child(userId).SetRawJsonValueAsync(infoToJson);
                 }
             }
         }
@@ -84,7 +87,7 @@ namespace com.Icypeak.Data
         public void UpdateGameDataDB()
         {
             var infoGameToJson = JsonUtility.ToJson(LocalDataManager.Instance.Game);
-            dbRef.Child(GameInfo.GameName).Child(userId).SetRawJsonValueAsync(infoGameToJson);
+            dbRef.Child(LocalDataManager.Instance.Info.GameName).Child(userId).SetRawJsonValueAsync(infoGameToJson);
         }
 
         void OnEnable()

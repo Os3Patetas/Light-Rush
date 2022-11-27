@@ -1,4 +1,9 @@
-public static class GameInfo
+namespace com.Icypeak.Data
 {
-    public static string GameName = "Light-Rush";
+    [System.Serializable]
+    public class GameInfo
+    {
+        public string GameName = "Light-Rush";
+        public string LastUserID = "anonymous";
+    }
 }

@@ -9,9 +9,13 @@ namespace com.Icypeak.Data
 
         public GameData Game;
         public CurrencyData Currency;
+        public GameInfo Info;
 
         public Action OnGameDataChange;
         public Action OnCurrencyChange;
+
+        bool succesfullSignIn;
+        string googleID;
 
         void Awake()
         {
@@ -24,6 +28,15 @@ namespace com.Icypeak.Data
                 Instance = this;
             }
             DontDestroyOnLoad(this.gameObject);
+
+            succesfullSignIn = true;
+            if (succesfullSignIn)
+            {
+                googleID = "crookedLegs";
+                Info.LastUserID = googleID;
+                UpdateLocalGameInfoData();
+            }
+            print(Info.LastUserID);
         }
 
         void OnEnable()
@@ -36,6 +49,7 @@ namespace com.Icypeak.Data
         {
             Currency = SaveSystem.Load<CurrencyData>();
             Game = SaveSystem.Load<GameData>();
+            Info = SaveSystem.Load<GameInfo>();
         }
 
         public void UpdateLocalGameData(GameData newData)
@@ -57,6 +71,11 @@ namespace com.Icypeak.Data
             Currency = newData;
             SaveSystem.Save<CurrencyData>(Currency);
             OnCurrencyChange?.Invoke();
+        }
+
+        public void UpdateLocalGameInfoData()
+        {
+            SaveSystem.Save<GameInfo>(Info);
         }
 
     }
