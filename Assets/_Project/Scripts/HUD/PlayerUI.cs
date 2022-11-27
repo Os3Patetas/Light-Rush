@@ -13,10 +13,10 @@ namespace com.icypeak.ui
 
         void OnEnable() =>
             ScoreManager.Instance.OnScoreChange += UpdateScoreText;
-        
+
         void OnDisable()
         {
-            if(ScoreManager.Instance != null)
+            if (ScoreManager.Instance != null)
             {
                 ScoreManager.Instance.OnScoreChange -= UpdateScoreText;
             }

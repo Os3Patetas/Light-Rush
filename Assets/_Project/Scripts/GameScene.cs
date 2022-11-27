@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using com.icypeak.player;
+
 
 namespace com.icypeak
 {
     public class GameScene : MonoBehaviour
     {
         [SerializeField] GameObject PauseUI;
+        [SerializeField] GameObject GameOverUI;
         void Start()
         {
             Screen.orientation = ScreenOrientation.LandscapeLeft;
@@ -37,6 +40,22 @@ namespace com.icypeak
         {
             Time.timeScale = 1;
             SceneManager.LoadScene("MainMenu");
+        }
+
+        void ActivateGameOverUI()
+        {
+            Time.timeScale = 0;
+            GameOverUI.SetActive(true);
+        }
+
+        void OnEnable()
+        {
+            Player.OnDeath += ActivateGameOverUI;
+        }
+
+        void OnDisable()
+        {
+            Player.OnDeath -= ActivateGameOverUI;
         }
     }
 }

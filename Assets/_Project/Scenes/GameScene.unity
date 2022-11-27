@@ -1132,6 +1132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseUI: {fileID: 1658095504}
+  GameOverUI: {fileID: 1098222948}
 --- !u!1 &780320205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,6 +1924,7 @@ GameObject:
   - component: {fileID: 1098222949}
   - component: {fileID: 1098222951}
   - component: {fileID: 1098222950}
+  - component: {fileID: 1098222952}
   m_Layer: 5
   m_Name: GameOverUI
   m_TagString: Untagged
@@ -1989,6 +1991,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098222948}
   m_CullTransparentMesh: 1
+--- !u!114 &1098222952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098222948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0089b741849600d42897794921dbb22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1697278068}
+  bonusText: {fileID: 1950696919}
+  coinsText: {fileID: 968317752}
+  totalText: {fileID: 222418253}
 --- !u!1 &1160580631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,7 +2359,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1266476366}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 739438467}
+        m_TargetAssemblyTypeName: com.icypeak.GameScene, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1266476366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3094,7 +3124,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1677476727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 739438467}
+        m_TargetAssemblyTypeName: com.icypeak.GameScene, Assembly-CSharp
+        m_MethodName: ReturnMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1677476727
 MonoBehaviour:
   m_ObjectHideFlags: 0

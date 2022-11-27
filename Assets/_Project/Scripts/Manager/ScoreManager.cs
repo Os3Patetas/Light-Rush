@@ -8,8 +8,8 @@ namespace com.icypeak.managers
         public static ScoreManager Instance;
         bool repeatedObject = false;
 
-        float _score;
-        public float Score
+        int _score;
+        public int Score
         {
             get => _score;
             set
@@ -35,7 +35,7 @@ namespace com.icypeak.managers
         void Start() => _score = 0;
         void OnDestroy()
         {
-            if(!repeatedObject)
+            if (!repeatedObject)
             {
                 Instance = null;
             }

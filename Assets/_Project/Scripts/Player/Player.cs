@@ -1,8 +1,9 @@
 using com.icypeak.managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
-namespace com.icypeak.player 
+namespace com.icypeak.player
 {
     public class Player : MonoBehaviour
     {
@@ -17,6 +18,8 @@ namespace com.icypeak.player
         bool _isPressingScreen = false;
         bool _alternateStateActionExecuted => _inputActions.Actions.Transform.WasPerformedThisFrame();
         bool _isDead = false;
+
+        public static Action OnDeath;
 
         void Awake()
         {
@@ -52,16 +55,16 @@ namespace com.icypeak.player
             {
                 if (this.CompareTag("Particle"))
                 {
-                    _anim.SetBool("isWave" , true);
+                    _anim.SetBool("isWave", true);
                     this.tag = "Wave";
-                    _sr.flipX=true;
+                    _sr.flipX = true;
                     //_sr.color = waveColor;
                 }
                 else
                 {
-                    _anim.SetBool("isWave" , false);
+                    _anim.SetBool("isWave", false);
                     this.tag = "Particle";
-                     _sr.flipX=false;
+                    _sr.flipX = false;
                     //_sr.color = particleColor;
                 }
             }
@@ -82,6 +85,7 @@ namespace com.icypeak.player
             if (!collision.CompareTag(this.tag))
             {
                 _isDead = true;
+                OnDeath?.Invoke();
                 Destroy(this.gameObject);
             }
         }
@@ -91,8 +95,9 @@ namespace com.icypeak.player
             if (!collision.CompareTag(this.tag))
             {
                 _isDead = true;
+                OnDeath?.Invoke();
                 Destroy(this.gameObject);
-            }    
+            }
         }
 
         void OnTriggerExit2D(Collider2D collision)
