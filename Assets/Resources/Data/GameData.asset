@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10d55f254fe65c49b15bee1fea4b9dd, type: 3}
-  m_Name: Player Currency
+  m_Script: {fileID: 11500000, guid: 8c3b0159db4685142ad9aa50c9e8700d, type: 3}
+  m_Name: GameData
   m_EditorClassIdentifier: 
-  Gold: 0
-  Cash: 0
+  GameName: 
+  DailyScore: 0
+  WeeklyScore: 0
+  MonthlyScore: 0
+  AllTimeScore: 0
+  ScoreMultiplier: 0
